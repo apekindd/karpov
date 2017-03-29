@@ -54,7 +54,6 @@ class CategoryController extends AppController
     public function actionView($alias){
 //        $id = Yii::$app->request->get('id');
         $cat_name = $this->findByPath($alias);
-        var_dump($cat_name);
         $category = Category::findOne(['alias'=>$cat_name]);
         if(empty($category)){
             throw new \yii\web\HttpException(404, 'Такой категории не существует');

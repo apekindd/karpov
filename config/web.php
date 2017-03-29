@@ -7,7 +7,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'language' => 'ru-RU',
     'bootstrap' => ['log'],
-    'defaultRoute' => 'category/index',
+    'defaultRoute' => '/',
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\Module',
@@ -72,9 +72,12 @@ $config = [
             'rules' => [
                 "product/<id:\d+>"=>'product/view',
                 "search"=>'category/search',
+                "cart"=>'cart/view',
+                "contacts"=>'site/contact',
                 "category/<alias:[\w_\/-]+>/<id:\d+>"=>'category/product',
                 "category/<alias:[\w_\/-]+>/page=<page:\d+>"=>'category/view',
                 "category/<alias:[\w_\/-]+>"=>'category/view',
+                '/'=>'site/index',
                 "<action(about|contact|login)>"=>"site/<action>",
             ],
         ],
