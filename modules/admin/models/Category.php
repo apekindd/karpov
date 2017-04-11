@@ -35,8 +35,8 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             [['parent_id'], 'integer'],
-            [['name'], 'required'],
-            [['name', 'keywords', 'description'], 'string', 'max' => 255],
+            [['name','alias'], 'required'],
+            [['name', 'keywords', 'description','alias'], 'string', 'max' => 255],
         ];
     }
 
@@ -51,7 +51,7 @@ class Category extends \yii\db\ActiveRecord
             'name' => 'Название',
             'keywords' => 'Ключевые слова',
             'description' => 'Мета-описание',
-            //'code' => 'Code',
+            'alias' => 'Символьный код',
         ];
     }
 }
