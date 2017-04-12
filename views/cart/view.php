@@ -35,19 +35,19 @@ use yii\widgets\ActiveForm;
                     <tr>
                         <td><a href="<?= Url::to(['product/view', 'id'=>$id]) ?>"><?= \yii\helpers\Html::img($item['img'], ['alt'=>$item['name'], 'height'=>50]); ?></a></td>
                         <td><a href="<?= Url::to(['product/view', 'id'=>$id]) ?>"><?= $item['name'] ?></a></td>
-                        <td><?= $item['qty'] ?></td>
-                        <td><?= $item['price'] ?></td>
-                        <td><?= $item['qty'] * $item['price'] ?></td>
+                        <td><?= $item['qty'] ?>шт</td>
+                        <td><?= $item['price'] ?>грн</td>
+                        <td><?= $item['qty'] * $item['price'] ?>грн</td>
                         <td><span data-id="<?= $id ?>" class="glyphicon glyphicon-remove text-danger del-item" aria-hidden="true"></span></td>
                     </tr>
                 <?php } ?>
                 <tr>
                     <td colspan="4">Итого:</td>
-                    <td colspan="3"><?= $session['cart.qty'] ?></td>
+                    <td colspan="3"><?= $session['cart.qty'] ?>шт</td>
                 </tr>
                 <tr>
                     <td colspan="4">На сумму:</td>
-                    <td colspan="3"><?= $session['cart.sum'] ?></td>
+                    <td colspan="3"><?= $session['cart.sum'] ?>грн</td>
                 </tr>
                 </tbody>
             </table>
@@ -58,7 +58,7 @@ use yii\widgets\ActiveForm;
         <?= $form->field($order, 'email') ?>
         <?= $form->field($order, 'phone') ?>
         <?= $form->field($order, 'address') ?>
-        <?= Html::submitButton('Оформить',['class'=>'btn btn-success']) ?>
+        <?= Html::submitButton('Оформить',['class'=>'btn btn-success btn-block']) ?>
         <?php $form = ActiveForm::end() ?>
     <?php }else{ ?>
         <h3>Корзина пуста</h3>

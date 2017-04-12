@@ -13,18 +13,18 @@
                 <tr>
                     <td><?= \yii\helpers\Html::img($item['img'], ['alt'=>$item['name'], 'height'=>50]); ?></td>
                     <td><?= $item['name'] ?></td>
-                    <td><?= $item['qty'] ?></td>
-                    <td><?= $item['price'] ?></td>
+                    <td><?= $item['qty'] ?>шт</td>
+                    <td><?= $item['price'] ?>грн</td>
                     <td><span data-id="<?= $id ?>" class="glyphicon glyphicon-remove text-danger del-item" aria-hidden="true"></span></td>
                 </tr>
             <?php } ?>
             <tr>
                 <td colspan="4">Итого:</td>
-                <td colspan="2"><?= $session['cart.qty'] ?></td>
+                <td colspan="2"><?= $session['cart.qty'] ?>шт</td>
             </tr>
             <tr>
                 <td colspan="4">На сумму:</td>
-                <td colspan="2"><?= $session['cart.sum'] ?></td>
+                <td colspan="2"><?= $session['cart.sum'] ?>грн</td>
             </tr>
             </tbody>
         </table>

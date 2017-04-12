@@ -68,6 +68,17 @@ class ProductController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success',"Товар {$model->name} успешно добавлен");
+
+            $model->image = UploadedFile::getInstance($model,'image');
+            if($model->image){
+                $model->upload();
+            }
+            unset($model->image);
+            $model->gallery = UploadedFile::getInstances($model,'gallery');
+            if($model->gallery){
+                $model->uploadGallery();
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -87,14 +98,27 @@ class ProductController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            
+
             $model->image = UploadedFile::getInstance($model,'image');
             if($model->image){
+                $img = $model->getImage();
+
+                if($img){
+                    $model->removeImage($img);
+                }
                 $model->upload();
             }
             unset($model->image);
             $model->gallery = UploadedFile::getInstances($model,'gallery');
             if($model->gallery){
+                $imgs = $model->getImages();
+                if($imgs){
+                    foreach($imgs as $img){
+                        if(!$img->isMain){
+                            $model->removeImage($img);
+                        }
+                    }
+                }
                 $model->uploadGallery();
             }
 
@@ -106,6 +130,8 @@ class ProductController extends Controller
             ]);
         }
     }
+
+
 
     /**
      * Deletes an existing Product model.

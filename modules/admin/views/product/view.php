@@ -25,6 +25,16 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
     <?php $img = $model->getImage();?>
+    <?php //$gallery = $model->getImages();?>
+    <?php
+    function getGallery($model){
+        $gallery = '';
+        foreach($model->getImages() as $image){
+            $gallery .= "<img width='200' src='{$image->getUrl()}' style='padding-right:10px'>";
+        }
+        return $gallery;
+    }
+    ?>
 
     <?= DetailView::widget([
         'model' => $model,
@@ -39,6 +49,11 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'image',
                 'value'=>"<img width='200' src='{$img->getUrl()}'>",
+                'format' => 'html'
+            ],
+            [
+                'attribute' => 'gallery',
+                'value'=> getGallery($model),
                 'format' => 'html'
             ],
             //'hit:boolean',

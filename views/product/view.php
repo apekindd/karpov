@@ -7,19 +7,17 @@ use yii\helpers\Html;
 				<div class="col-sm-3">
 					<?php include('/includes/sidebar.inc.php')?>
 				</div>
-
-				
 <?php
 	$mainImg = $product->getImage();
  	$gallery = $product->getImages();
-//echo '<pre>';print_r($gallery); echo '</pre>';
 ?>
 				<div class="col-sm-9 padding-right">
 					<div class="product-details"><!--product-details-->
 						<div class="col-sm-5">
-							<div class="view-product productinfo text-center">
+							<?php/*<div class="view-product productinfo text-center">
 								<?= Html::img($mainImg->getUrl(),['alt'=>$product->name]) ?>
-							</div>
+							</div>*/?>
+							<?php/*
 							<div id="similar-product" class="carousel slide" data-ride="carousel">
 
 								  <!-- Wrapper for slides -->
@@ -51,6 +49,36 @@ use yii\helpers\Html;
 									<i class="fa fa-angle-right"></i>
 								  </a>
 							</div>
+							*/?>
+
+							<div id="myCarousel" class="carousel slide" data-ride="carousel">
+								<!-- Indicators -->
+								<ol class="carousel-indicators">
+
+									<?php for($x=0; $x<count($gallery); $x++){ ?>
+									<li data-target="#myCarousel" data-slide-to="<?= $x ?>" <?=($x==0) ? 'class="active"' : '' ?>></li>
+									<?php } ?>
+								</ol>
+
+								<!-- Wrapper for slides -->
+								<div class="carousel-inner view-product productinfo text-center" role="listbox">
+									<?php $i=0;foreach($gallery as $item){?>
+									<div class="item <?= ($i==0) ? 'active' : '' ?>" style="padding:0px!important">
+										<?= Html::img($item->getUrl('330x248'),['alt'=>$product->name]) ?>
+									</div>
+									<?php $i++; } ?>
+								</div>
+
+								<!-- Left and right controls -->
+								<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									<span class="sr-only">&#8592;</span>
+								</a>
+								<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+									<span class="sr-only">&#8594;</span>
+								</a>
+							</div>
 
 						</div>
 						<div class="col-sm-7">
@@ -63,16 +91,13 @@ use yii\helpers\Html;
 								}
 								?>
 								<h2><?= $product->name ?></h2>
-								<p>Web ID: <?= $product->id ?></p>
-								<img src="/images/product-details/rating.png" alt="" />
+								<p>Код товара: <?= $product->id ?></p>
 								<span>
 									<span>Цена: <?= $product->price ?>грн</span>
 									<label>Количество:</label>
 									<input type="text" value="1" id="qty" />
 									<a href="<?= \yii\helpers\Url::to(['cart/add','id'=>$product->id]) ?>" data-id="<?= $product->id ?>" type="button" class="btn btn-fefault add-to-cart cart">
-										<i class="fa fa-shopping-cart"></i>
-Add to cart
-</a>
+										<i class="fa fa-shopping-cart"></i>Добавить в корзину</a>
 								</span>
 								<p><b>Категория:</b> <a href="<?= \yii\helpers\Url::to(['category/view', 'id'=>$product->category->id]) ?>"><?= $product->category->name ?></a></p>
 								<?= $product->content ?>
@@ -287,7 +312,7 @@ Add to cart
 													<?= Html::img("@web/images/products/{$hit->img}",['alt'=>$hit->name]) ?>
 													<h2><?= $hit->price ?>грн</h2>
 													<p><a href="<?= \yii\helpers\Url::to(['product/view','id'=>$hit->id]) ?>"><?= $hit->name ?></a></p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Добавить в корзину</button>
 												</div>
 											</div>
 										</div>

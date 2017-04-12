@@ -10,9 +10,13 @@ use yii\data\Pagination;
 class CategoryController extends AppController
 {
     public function actionIndex(){
-        $hits = Product::find()->where(['hit'=>'1'])->limit(6)->all();
+        $query = Product::find();
+        $pages = new Pagination(['totalCount'=>$query->count(), 'pageSize'=>6,'forcePageParam' => false, 'pageSizeParam'=>false]);
+
         $this->setMeta('E-SHOPPER');
-        return $this->render('index', compact('hits'));
+        $hits = $query->offset($pages->offset)->limit($pages->limit)->all();
+
+        return $this->render('index', compact('hits','pages'));
     }
     
     /*public function actionView($id){
