@@ -48,17 +48,27 @@ ltAppAsset::register($this);
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="<?= \yii\helpers\Url::to(['/site/index']) ?>">На сайт</a></li>
-                                <li><a href="<?= \yii\helpers\Url::to(['/admin']) ?>" class="active">Заказы</a></li>
+                                <li><a href="<?= \yii\helpers\Url::to(['/admin']) ?>" <?=(Yii::$app->request->url == \yii\helpers\Url::to(['/admin'])) ? 'class="active"' : '' ?>>Заказы</a></li>
                                 <li class="dropdown"><a href="#">Категории<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="<?= \yii\helpers\Url::to(['category/index']) ?>">Список категорий</a></li>
-                                        <li><a href="<?= \yii\helpers\Url::to(['category/create']) ?>">Добавить категорию</a></li>
+                                        <li><a href="<?= \yii\helpers\Url::to(['category/index']) ?>" <?=(Yii::$app->request->url == \yii\helpers\Url::to(['category/index'])) ? 'class="active"' : '' ?>>Список категорий</a></li>
+                                        <li><a href="<?= \yii\helpers\Url::to(['category/create']) ?>" <?=(Yii::$app->request->url == \yii\helpers\Url::to(['category/create'])) ? 'class="active"' : '' ?>>Добавить категорию</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="#">Товары<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="<?= \yii\helpers\Url::to(['product/index']) ?>">Список товаров</a></li>
-                                        <li><a href="<?= \yii\helpers\Url::to(['product/create']) ?>">Добавить товар</a></li>
+                                        <li><a href="<?= \yii\helpers\Url::to(['product/index']) ?>" <?=(Yii::$app->request->url == \yii\helpers\Url::to(['product/index'])) ? 'class="active"' : '' ?>>Список товаров</a></li>
+                                        <li><a href="<?= \yii\helpers\Url::to(['product/create']) ?>" <?=(Yii::$app->request->url == \yii\helpers\Url::to(['product/create'])) ? 'class="active"' : '' ?>>Добавить товар</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="#">Главная страница<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li>
+                                            <a href="<?= \yii\helpers\Url::to(['main/view','id'=>1]) ?>" <?=(Yii::$app->request->url == \yii\helpers\Url::to(['main/view','id'=>1])) ? 'class="active"' : '' ?>>Просмотр</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= \yii\helpers\Url::to(['main/update','id'=>1]) ?>" <?=(Yii::$app->request->url == \yii\helpers\Url::to(['main/update','id'=>1])) ? 'class="active"' : '' ?>>Редактирование</a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>

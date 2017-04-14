@@ -2,9 +2,9 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
 ?>
 <?php
+
 /*
 ?>
 <section id="slider"><!--slider-->
@@ -81,8 +81,12 @@ $this->title = 'My Yii Application';
             </div>
 
             <div class="col-sm-9 padding-right">
-
-
+                <?php if($main->title){?>
+                <h1><?= $main->title ?></h1>
+                <?php } ?>
+                <?php if($main->description){?>
+                <div><?= $main->description ?></div>
+                <?php } ?>
             </div>
         </div>
     </div>

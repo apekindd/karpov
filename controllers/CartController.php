@@ -61,7 +61,7 @@ class CartController extends AppController
     public function actionView(){
         $session = Yii::$app->session;
         $session->open();
-        $this->setMeta('Корзина');
+        $this->setMeta(\Yii::$app->params['siteName'].' | Корзина');
         $order = new Order();
         
         if($order->load(Yii::$app->request->post())){

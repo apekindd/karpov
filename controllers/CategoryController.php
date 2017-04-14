@@ -13,7 +13,7 @@ class CategoryController extends AppController
         $query = Product::find();
         $pages = new Pagination(['totalCount'=>$query->count(), 'pageSize'=>6,'forcePageParam' => false, 'pageSizeParam'=>false]);
 
-        $this->setMeta('E-SHOPPER');
+        $this->setMeta(\Yii::$app->params['siteName']);
         $hits = $query->offset($pages->offset)->limit($pages->limit)->all();
 
         return $this->render('index', compact('hits','pages'));
@@ -73,14 +73,14 @@ class CategoryController extends AppController
 
 
         //meta
-        $this->setMeta('E-SHOPPER | '.$category->name, $category->keywords, $category->description);
+        $this->setMeta(\Yii::$app->params['siteName'].' | '.$category->name, $category->keywords, $category->description);
 
         return $this->render('view',compact('products', 'pages','category'));
     }
 
     public function actionSearch(){
         $q = trim(Yii::$app->request->get('q'));
-        $this->setMeta('E-SHOPPER | '.$q);
+        $this->setMeta(\Yii::$app->params['siteName'].' | '.$q);
         if(!$q){
             return $this->render('search');
         }

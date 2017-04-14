@@ -96,10 +96,12 @@ use yii\helpers\Html;
 									<span>Цена: <?= $product->price ?>грн</span>
 									<label>Количество:</label>
 									<input type="text" value="1" id="qty" />
+								</span>
+								<div>
 									<a href="<?= \yii\helpers\Url::to(['cart/add','id'=>$product->id]) ?>" data-id="<?= $product->id ?>" type="button" class="btn btn-fefault add-to-cart cart">
 										<i class="fa fa-shopping-cart"></i>Добавить в корзину</a>
-								</span>
-								<p><b>Категория:</b> <a href="<?= \yii\helpers\Url::to(['category/view', 'id'=>$product->category->id]) ?>"><?= $product->category->name ?></a></p>
+								</div>
+								<p><b>Категория:</b> <a href="<?= \yii\helpers\Url::to(['category/view', 'alias'=>$product->category->alias]) ?>"><?= $product->category->name ?></a></p>
 								<?= $product->content ?>
 							</div><!--/product-information-->
 						</div>
@@ -295,13 +297,13 @@ use yii\helpers\Html;
 <!--						</div>-->
 <!--					</div>-->
 					<!--/category-tab-->
-
+				<?php $cnt = count($hits); if($cnt > 0){?>
 					<div class="recommended_items"><!--recommended_items-->
 						<h2 class="title text-center">Рекомендуемые товары</h2>
 
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
-								<?php $cnt = count($hits); $i=0; foreach($hits as $hit){?>
+								<?php $i=0; foreach($hits as $hit){?>
 									<?php if($i%3 == 0){ ?>
 									<div class="item <?= ($i==0)? 'active' : '' ?>">
 									<?php } ?>
@@ -331,7 +333,7 @@ use yii\helpers\Html;
 							  </a>
 						</div>
 					</div><!--/recommended_items-->
-
+				<?php } ?>
 				</div>
 			</div>
 		</div>

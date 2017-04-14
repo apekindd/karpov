@@ -138,7 +138,7 @@
 .header-middle .col-sm-4 {
 	display: inline-block;
 	overflow: inherit;
-	width: 100%;
+	/*width: 100%;*/
 }
 
 .social-icons ul li a i {
@@ -281,6 +281,13 @@ ul.sub-menu{
 /* XS Portrait */
 @media (max-width: 480px) {
 
+	.modal-footer .btn{
+		margin-top: 8px;
+	}
+	.modal-footer .btn-default{
+		width:100%;
+	}
+
 .contactinfo{
 	text-align: center;
 }
@@ -319,8 +326,8 @@ ul.sub-menu{
 }
 
 .logo{
-	text-align: center;
-	width: 100%;
+	/*text-align: center;*/
+	/*width: 100%;*/
 }
 
 .shop-menu ul li {
@@ -328,7 +335,7 @@ ul.sub-menu{
 }
 
 .header-middle .col-sm-4{
-	text-align: center;
+	/*text-align: center;*/
 	overflow: inherit;
 }
 
@@ -353,6 +360,7 @@ ul.sub-menu{
 	background: rgba(0, 0, 0, 0.5);
     padding-top: 15px;
 	padding-bottom: 0;
+	border-bottom: 2px solid #fff;
 }
 
 .mainmenu ul li:last-child{

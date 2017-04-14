@@ -46,6 +46,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-toggle {
   background-color: #000;
+  margin-top: 0px!important;
+  margin-right: 0px!important;
 }
 
 a#scrollUp {
@@ -228,6 +230,10 @@ a#scrollUp i{
 .navbar-collapse.collapse{
   padding-left: 0;
 }
+.navbar-collapse.in, .collapse.in li a i.fa-home{
+  padding-left: 15px!important;
+}
+
 
 .mainmenu ul li{
   padding-right: 15px;
@@ -802,6 +808,12 @@ ul.category-products{
   position: absolute;
   font-weight: bold;
   font-size: 50px;
+  bottom: -56px;
+}
+.text{
+  position: absolute;
+  font-weight: bold;
+  font-size: 25px;
   bottom: -56px;
 }
 

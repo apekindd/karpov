@@ -1,3 +1,4 @@
+<?php  use app\modules\admin\models\Main; ?>
 <div class="left-sidebar">
     <h2>Категории</h2>
 
@@ -6,8 +7,22 @@
     </ul>
 
 
-    <div class="shipping text-center"><!--shipping-->
-        <img src="http://placehold.it/270x329" alt="" />
+    <?php
+    $main = Main::findOne(1);
+    if($main->show == 1){
+
+        $mainImg = $main->getImage();
+    ?>
+    <div class="shipping text-center productinfo"><!--shipping-->
+        <?php if($main->link){?>
+            <a href="<?= $main->link ?>" target="_blank">
+        <?php }?>
+        <img src="<?= $mainImg->getUrl() ?>"/>
+                <?php if($main->link){?>
+            </a>
+            <?php }?>
+
     </div><!--/shipping-->
+    <?php }?>
 
 </div>
