@@ -4,6 +4,12 @@ use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 ?>
 <div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <?php include('/includes/sidebar.inc.php')?>
+        </div>
+
+        <div class="col-sm-9">
     <?php
     if(Yii::$app->session->hasFlash('success')){?>
         <div class="alert alert-success alert-dismissible" role="alert">
@@ -63,4 +69,6 @@ use yii\widgets\ActiveForm;
     <?php }else{ ?>
         <h3>Корзина пуста</h3>
     <?php } ?>
+        </div>
+    </div>
 </div>

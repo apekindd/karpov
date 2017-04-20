@@ -73,14 +73,14 @@ class CategoryController extends AppController
 
 
         //meta
-        $this->setMeta(\Yii::$app->params['siteName'].' | '.$category->name, $category->keywords, $category->description);
+        $this->setMeta($category->name.' | '.\Yii::$app->params['siteName'], $category->keywords, $category->description);
 
         return $this->render('view',compact('products', 'pages','category'));
     }
 
     public function actionSearch(){
         $q = trim(Yii::$app->request->get('q'));
-        $this->setMeta(\Yii::$app->params['siteName'].' | '.$q);
+        $this->setMeta($q.' | '.\Yii::$app->params['siteName']);
         if(!$q){
             return $this->render('search');
         }

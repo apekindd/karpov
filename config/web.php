@@ -71,6 +71,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 "product/<id:\d+>"=>'product/view',
+                "product/review"=>'product/review',
                 "search"=>'category/search',
                 "cart"=>'cart/view',
                 "contacts"=>'site/contacts',

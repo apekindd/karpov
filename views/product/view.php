@@ -4,6 +4,19 @@ use yii\helpers\Html;
 <section>
 		<div class="container">
 			<div class="row">
+				<?php
+				if(Yii::$app->session->hasFlash('success')){?>
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<?php echo Yii::$app->session->getFlash('success'); ?>
+					</div>
+				<?php } ?>
+				<?php if(Yii::$app->session->hasFlash('error')){?>
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<?php  echo Yii::$app->session->getFlash('error'); ?>
+					</div>
+				<?php  }  ?>
 				<div class="col-sm-3">
 					<?php include('/includes/sidebar.inc.php')?>
 				</div>
@@ -106,196 +119,51 @@ use yii\helpers\Html;
 							</div><!--/product-information-->
 						</div>
 					</div><!--/product-details-->
+<?php $reviews = $product->reviews; ?>
+					<div class="category-tab shop-details-tab"><!--category-tab-->
+						<div class="col-sm-12">
+							<ul class="nav nav-tabs">
+								<li class="active"><a href="#reviews" data-toggle="tab">Отзывы (<?=count($reviews)?>)</a></li>
+							</ul>
+						</div>
+						<div class="tab-content">
+							<div class="tab-pane fade active in" id="reviews" >
+								<div class="col-sm-12">
+									<?php
+									if(!empty($reviews)){
+										foreach($reviews as $review){
+											$date = strtotime($review->date);
+											?>
+											<ul style="margin-bottom:0px">
+												<li><a href=""><i class="fa fa-user"></i><?= $review->name ?></a></li>
+												<li><a href=""><i class="fa fa-clock-o"></i><?= date("H:i", $date) ?></a></li>
+												<li><a href=""><i class="fa fa-calendar-o"></i><?= date("d.m.Y", $date) ?></a></li>
+											</ul>
+											<p style="margin-bottom:20px"><?= nl2br($review->message) ?></p>
+										<?php }
+									}?>
 
-<!--					<div class="category-tab shop-details-tab"><!--category-tab-->
-<!--						<div class="col-sm-12">-->
-<!--							<ul class="nav nav-tabs">-->
-<!--								<li><a href="#details" data-toggle="tab">Details</a></li>-->
-<!--								<li><a href="#companyprofile" data-toggle="tab">Company Profile</a></li>-->
-<!--								<li><a href="#tag" data-toggle="tab">Tag</a></li>-->
-<!--								<li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>-->
-<!--							</ul>-->
-<!--						</div>-->
-<!--						<div class="tab-content">-->
-<!--							<div class="tab-pane fade" id="details" >-->
-<!--								<div class="col-sm-3">-->
-<!--									<div class="product-image-wrapper">-->
-<!--										<div class="single-products">-->
-<!--											<div class="productinfo text-center">-->
-<!--												<img src="/images/home/gallery1.jpg" alt="" />-->
-<!--												<h2>$56</h2>-->
-<!--												<p>Easy Polo Black Edition</p>-->
-<!--												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>-->
-<!--											</div>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--								<div class="col-sm-3">-->
-<!--									<div class="product-image-wrapper">-->
-<!--										<div class="single-products">-->
-<!--											<div class="productinfo text-center">-->
-<!--												<img src="/images/home/gallery2.jpg" alt="" />-->
-<!--												<h2>$56</h2>-->
-<!--												<p>Easy Polo Black Edition</p>-->
-<!--												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>-->
-<!--											</div>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--								<div class="col-sm-3">-->
-<!--									<div class="product-image-wrapper">-->
-<!--										<div class="single-products">-->
-<!--											<div class="productinfo text-center">-->
-<!--												<img src="/images/home/gallery3.jpg" alt="" />-->
-<!--												<h2>$56</h2>-->
-<!--												<p>Easy Polo Black Edition</p>-->
-<!--												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>-->
-<!--											</div>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--								<div class="col-sm-3">-->
-<!--									<div class="product-image-wrapper">-->
-<!--										<div class="single-products">-->
-<!--											<div class="productinfo text-center">-->
-<!--												<img src="/images/home/gallery4.jpg" alt="" />-->
-<!--												<h2>$56</h2>-->
-<!--												<p>Easy Polo Black Edition</p>-->
-<!--												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>-->
-<!--											</div>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--							</div>-->
-<!---->
-<!--							<div class="tab-pane fade" id="companyprofile" >-->
-<!--								<div class="col-sm-3">-->
-<!--									<div class="product-image-wrapper">-->
-<!--										<div class="single-products">-->
-<!--											<div class="productinfo text-center">-->
-<!--												<img src="/images/home/gallery1.jpg" alt="" />-->
-<!--												<h2>$56</h2>-->
-<!--												<p>Easy Polo Black Edition</p>-->
-<!--												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>-->
-<!--											</div>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--								<div class="col-sm-3">-->
-<!--									<div class="product-image-wrapper">-->
-<!--										<div class="single-products">-->
-<!--											<div class="productinfo text-center">-->
-<!--												<img src="/images/home/gallery3.jpg" alt="" />-->
-<!--												<h2>$56</h2>-->
-<!--												<p>Easy Polo Black Edition</p>-->
-<!--												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>-->
-<!--											</div>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--								<div class="col-sm-3">-->
-<!--									<div class="product-image-wrapper">-->
-<!--										<div class="single-products">-->
-<!--											<div class="productinfo text-center">-->
-<!--												<img src="/images/home/gallery2.jpg" alt="" />-->
-<!--												<h2>$56</h2>-->
-<!--												<p>Easy Polo Black Edition</p>-->
-<!--												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>-->
-<!--											</div>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--								<div class="col-sm-3">-->
-<!--									<div class="product-image-wrapper">-->
-<!--										<div class="single-products">-->
-<!--											<div class="productinfo text-center">-->
-<!--												<img src="/images/home/gallery4.jpg" alt="" />-->
-<!--												<h2>$56</h2>-->
-<!--												<p>Easy Polo Black Edition</p>-->
-<!--												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>-->
-<!--											</div>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--							</div>-->
-<!---->
-<!--							<div class="tab-pane fade" id="tag" >-->
-<!--								<div class="col-sm-3">-->
-<!--									<div class="product-image-wrapper">-->
-<!--										<div class="single-products">-->
-<!--											<div class="productinfo text-center">-->
-<!--												<img src="/images/home/gallery1.jpg" alt="" />-->
-<!--												<h2>$56</h2>-->
-<!--												<p>Easy Polo Black Edition</p>-->
-<!--												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>-->
-<!--											</div>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--								<div class="col-sm-3">-->
-<!--									<div class="product-image-wrapper">-->
-<!--										<div class="single-products">-->
-<!--											<div class="productinfo text-center">-->
-<!--												<img src="/images/home/gallery2.jpg" alt="" />-->
-<!--												<h2>$56</h2>-->
-<!--												<p>Easy Polo Black Edition</p>-->
-<!--												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>-->
-<!--											</div>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--								<div class="col-sm-3">-->
-<!--									<div class="product-image-wrapper">-->
-<!--										<div class="single-products">-->
-<!--											<div class="productinfo text-center">-->
-<!--												<img src="/images/home/gallery3.jpg" alt="" />-->
-<!--												<h2>$56</h2>-->
-<!--												<p>Easy Polo Black Edition</p>-->
-<!--												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>-->
-<!--											</div>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--								<div class="col-sm-3">-->
-<!--									<div class="product-image-wrapper">-->
-<!--										<div class="single-products">-->
-<!--											<div class="productinfo text-center">-->
-<!--												<img src="/images/home/gallery4.jpg" alt="" />-->
-<!--												<h2>$56</h2>-->
-<!--												<p>Easy Polo Black Edition</p>-->
-<!--												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>-->
-<!--											</div>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--							</div>-->
-<!---->
-<!--							<div class="tab-pane fade active in" id="reviews" >-->
-<!--								<div class="col-sm-12">-->
-<!--									<ul>-->
-<!--										<li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>-->
-<!--										<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>-->
-<!--										<li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>-->
-<!--									</ul>-->
-<!--									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>-->
-<!--									<p><b>Write Your Review</b></p>-->
-<!---->
-<!--									<form action="#">-->
-<!--										<span>-->
-<!--											<input type="text" placeholder="Your Name"/>-->
-<!--											<input type="email" placeholder="Email Address"/>-->
-<!--										</span>-->
-<!--										<textarea name="" ></textarea>-->
-<!--										<b>Rating: </b> <img src="/images/product-details/rating.png" alt="" />-->
-<!--										<button type="button" class="btn btn-default pull-right">-->
-<!--Submit-->
-<!--										</button>-->
-<!--									</form>-->
-<!--								</div>-->
-<!--							</div>-->
-<!---->
-<!--						</div>-->
-<!--					</div>-->
+									<p style="padding-top:30px"><i>Все публикуемые комментарии проходят премодерацию. Ваш комментарий будет опубликован сразу после проверки нашими модераторами. Администрация сайта оставляет за собой право не публиковать сообщения.</i></p>
+									<p><b>Напишите свой комментарий</b></p>
+
+
+									<form action="/product/review" id="msg" method="post">
+										<?php echo Html :: hiddenInput(\Yii :: $app->getRequest()->csrfParam, \Yii :: $app->getRequest()->getCsrfToken(), []); ?>
+										<input type="hidden" value="<?= $product->id ?>" name="product">
+										<span>
+											<input type="text" name="name" required placeholder="Ваше Имя"/>
+											<input type="email" name="email" required placeholder="Ваш Email"/>
+										</span>
+										<textarea name="message" required placeholder="Комментарий"></textarea>
+										<button type="submit" id="send_msg" class="btn btn-default pull-right">
+Отправить
+										</button>
+									</form>
+								</div>
+							</div>
+
+						</div>
+					</div>
 					<!--/category-tab-->
 				<?php $cnt = count($hits); if($cnt > 0){?>
 					<div class="recommended_items"><!--recommended_items-->

@@ -71,6 +71,7 @@ ltAppAsset::register($this);
                                         </li>
                                     </ul>
                                 </li>
+                                <li><a <?=(Yii::$app->request->url == \yii\helpers\Url::to(['review/index'])) ? 'class="active"' : '' ?> href="<?= \yii\helpers\Url::to(['review/index']) ?>">Отзывы</a></li>
                             </ul>
                         </div>
                     </div>
